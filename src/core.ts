@@ -85,7 +85,7 @@ const getCitizensHolidays = (
     const target = new Date(h.date.getTime() + MS_PER_DAY);
     if (target.getDay() === 0 || holidayIds.has(toId(target))) return [];
 
-    return { date: target, name: "国民の休日" };
+    return [{ date: target, name: "国民の休日" }];
   });
 };
 
