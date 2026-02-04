@@ -1,8 +1,11 @@
 {
   "name": "jp-holidays",
   "version": "1.0.0",
-  "description": "",
+  "description": "日本の祝日を計算する正確で軽量なTypeScriptライブラリ。歴史的な振替休日ルールや特例祝日にも対応。",
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -18,21 +21,44 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --clean",
-    "test": "vitest",
-    "test:run": "vitest run",
+    "test": "vitest run",
     "prepublishOnly": "npm run build",
     "check": "biome check .",
     "format": "biome check --write .",
     "lint": "biome lint ."
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "japanese",
+    "holiday",
+    "calendar",
+    "japan",
+    "祝日",
+    "カレンダー"
+  ],
+  "author": "tsuno08",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsuno08/jp-holidays.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tsuno08/jp-holidays/issues"
+  },
+  "homepage": "https://github.com/tsuno08/jp-holidays#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "@biomejs/biome"
+    ]
+  },
   "packageManager": "pnpm@10.11.0",
   "devDependencies": {
-    "@biomejs/biome": "^2.3.14",
-    "tsup": "^8.5.1",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.18"
+    "@biomejs/biome": "2.3.14",
+    "tsup": "8.5.1",
+    "typescript": "5.9.3",
+    "vitest": "4.0.18"
   }
 }
