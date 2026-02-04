@@ -1,0 +1,20 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":preserveSemverRanges",
+    ":maintainLockFilesWeekly",
+    ":semanticCommits",
+    ":semanticCommitScope(deps)"
+  ],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "groupName": "devDependencies",
+      "automerge": true
+    }
+  ],
+  "schedule": ["before 9am on monday"],
+  "timezone": "Asia/Tokyo"
+}
