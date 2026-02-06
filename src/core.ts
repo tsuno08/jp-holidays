@@ -89,7 +89,14 @@ const getCitizensHolidays = (
   });
 };
 
-export const getHolidays = (year: number): Holiday[] => {
+const holidayCache = new Map<number, readonly Holiday[]>();
+
+export const getHolidays = (year: number): readonly Holiday[] => {
+  const cached = holidayCache.get(year);
+  if (cached) {
+    return cached;
+  }
+
   // 1. 基礎祝日の生成
   const baseHolidays: Holiday[] = [
     ...getFixedHolidays(year),
@@ -110,7 +117,13 @@ export const getHolidays = (year: number): Holiday[] => {
   // 3. 国民の休日の計算
   const citizens = getCitizensHolidays(combined, holidayIds, year);
 
-  return [...combined, ...citizens].sort(
+  const holidays = [...combined, ...citizens].sort(
     (a, b) => a.date.getTime() - b.date.getTime(),
   );
+
+  // オリジナルの結果を保存
+  Object.freeze(holidays);
+  holidayCache.set(year, holidays);
+
+  return holidays;
 };
