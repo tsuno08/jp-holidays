@@ -91,10 +91,13 @@ const getCitizensHolidays = (
 
 const holidayCache = new Map<number, readonly Holiday[]>();
 
+const cloneHolidays = (holidays: readonly Holiday[]): readonly Holiday[] =>
+  holidays.map((h) => ({ name: h.name, date: new Date(h.date.getTime()) }));
+
 export const getHolidays = (year: number): readonly Holiday[] => {
   const cached = holidayCache.get(year);
   if (cached) {
-    return cached;
+    return cloneHolidays(cached);
   }
 
   // 1. 基礎祝日の生成
@@ -120,10 +123,8 @@ export const getHolidays = (year: number): readonly Holiday[] => {
   const holidays = [...combined, ...citizens].sort(
     (a, b) => a.date.getTime() - b.date.getTime(),
   );
-
-  // オリジナルの結果を保存
   Object.freeze(holidays);
   holidayCache.set(year, holidays);
 
-  return holidays;
+  return cloneHolidays(holidays);
 };
