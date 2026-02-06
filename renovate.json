@@ -1,14 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:recommended",
     ":preserveSemverRanges",
     ":maintainLockFilesWeekly",
     ":semanticCommits",
     ":semanticCommitScope(deps)"
   ],
   "labels": ["dependencies"],
-  "minimumReleaseAge": "7 days",
+  "minimumReleaseAge": "14 days",
   "minimumReleaseAgeBehaviour": "timestamp-optional",
   "packageRules": [
     {
