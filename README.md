@@ -29,15 +29,19 @@ yarn add jp-holidays
 ### 今日の日付が祝日か判定する
 
 ```ts
-import { isHoliday } from "jp-holidays";
+import { getHolidayName, isHoliday } from "jp-holidays";
 
 const today = new Date();
-const holidayName = isHoliday(today);
 
+// 祝日かどうかを判定 (boolean)
+if (isHoliday(today)) {
+  console.log("今日は祝日です！");
+}
+
+// 祝日の名称を取得 (string | undefined)
+const holidayName = getHolidayName(today);
 if (holidayName) {
   console.log(`今日は${holidayName}です！`);
-} else {
-  console.log("今日は祝日ではありません。");
 }
 ```
 
